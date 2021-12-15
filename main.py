@@ -1,16 +1,29 @@
-# This is a sample Python script.
+import sqlite3
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+conn = sqlite3.connect("8_2_uzduotis_DB.db")
+c = conn.cursor()
 
+with conn:
+    c.execute("CREATE TABLE IF NOT EXISTS paskaitos (pavadinimas TEXT, destytojas TEXT, trukme INTEGER)")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+with conn:
+    c.execute(f"""
+    INSERT INTO paskaitos (pavadinimas, destytojas, trukme)
+    VALUES
+    ('Vadyba', 'Domantas', 40), 
+    ('Python', 'Donatas', 80), 
+    ('Java', 'Tomas', 80)
+     """)
 
+with conn:
+    selection = c.execute("SELECT pavadinimas FROM paskaitos WHERE trukme > 50")
+print(selection.fetchall())
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+with conn:
+    c.execute("UPDATE paskaitos SET pavadinimas = 'Python programavimas' WHERE pavadinimas = 'Python'")
+    c.execute("DELETE FROM paskaitos WHERE destytojas = 'Tomas'")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+with conn:
+    selection = c.execute("SELECT * FROM paskaitos")
+print(selection.fetchall())
+print(".....")
