@@ -26,4 +26,3 @@ with conn:
 with conn:
     selection = c.execute("SELECT * FROM paskaitos")
 print(selection.fetchall())
-print(".....")
