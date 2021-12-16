@@ -19,10 +19,10 @@ with conn:
     selection = c.execute("SELECT pavadinimas FROM paskaitos WHERE trukme > 50")
 print(selection.fetchall())
 
-with conn:
-    c.execute("UPDATE paskaitos SET pavadinimas = 'Python programavimas' WHERE pavadinimas = 'Python'")
-    c.execute("DELETE FROM paskaitos WHERE destytojas = 'Tomas'")
-
-with conn:
-    selection = c.execute("SELECT * FROM paskaitos")
-print(selection.fetchall())
+# with conn:
+#     c.execute("UPDATE paskaitos SET pavadinimas = 'Python programavimas' WHERE pavadinimas = 'Python'")
+#     c.execute("DELETE FROM paskaitos WHERE destytojas = 'Tomas'")
+#
+# with conn:
+#     selection = c.execute("SELECT * FROM paskaitos")
+# print(selection.fetchall())
